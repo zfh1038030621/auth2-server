@@ -3,11 +3,13 @@ package com.zfh;
 import com.zfh.config.CustomTokenEnhancer;
 import com.zfh.config.JdbcUserDetailService;
 import com.zfh.config.JwtTokenConfig;
+import com.zfh.config.MySimpleUrlAuthenticationSuccessHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * @author zfh
@@ -30,4 +32,8 @@ public class Application {
         return new CustomTokenEnhancer();
     }
 
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
 }

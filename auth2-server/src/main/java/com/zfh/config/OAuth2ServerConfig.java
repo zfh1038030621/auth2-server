@@ -56,6 +56,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                 .scopes("*")
                 // 加上下面代码，当为true时，OAuth Approval页面就默认放开，默认是false
                 .autoApprove("true"); //授权范围
+
     }
 
     @Override
@@ -78,6 +79,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         super.configure(security);
+        security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").allowFormAuthenticationForClients();
     }
 
     @Bean
